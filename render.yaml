@@ -1,4 +1,5 @@
 services:
+  # Backend
   - type: web
     name: birgunj-fashion-hub-backend
     runtime: node
@@ -29,11 +30,13 @@ services:
       - key: CLOUDINARY_API_SECRET
         sync: false
 
-  - type: static
+  # Frontend
+  - type: web
     name: birgunj-fashion-hub-frontend
+    runtime: node
     rootDir: frontend
     buildCommand: npm install && npm run build
-    staticPublishPath: dist
+    startCommand: npx serve -s dist
     envVars:
       - key: VITE_API_BASE_URL
         value: https://api.birgunjfashionhub.com/api
